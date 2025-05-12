@@ -1,34 +1,22 @@
-/**
- * Converts an integer to a Roman numeral.
- *
- * @param {number} num The integer to convert.
- * @returns {string} The Roman numeral representation of the integer.
- *
- * Input range: 0 <= num <= 100000
- */
 function intToRoman(num) {
-  // Define the mapping of Roman numerals to their integer values, including subtractive cases.
   const romanMap = [
     ['M', 1000],
-    ['CM', 900], // Added for optimization
+    ['CM', 900],
     ['D', 500],
-    ['CD', 400], // Added for optimization
+    ['CD', 400],
     ['C', 100],
-    ['XC', 90], // Added for optimization
+    ['XC', 90],
     ['L', 50],
-    ['XL', 40], // Added for optimization
+    ['XL', 40],
     ['X', 10],
-    ['IX', 9],  // Added for optimization
+    ['IX', 9],
     ['V', 5],
-    ['IV', 4],  // Added for optimization
+    ['IV', 4],
     ['I', 1]
   ];
 
   let result = '';
-
-  // Iterate through the mapping and subtract the largest possible values from the input number.
-  for (let i = 0; i < romanMap.length; i++) {
-    const [symbol, value] = romanMap[i];
+  for (const [symbol, value] of romanMap) {
     while (num >= value) {
       result += symbol;
       num -= value;
