@@ -1,5 +1,5 @@
-function romanNumeralConverter(num) {
-  const romanMap = [
+function convertToRoman(num) {
+  const romanSymbols = [
     ['M', 1000],
     ['CM', 900],
     ['D', 500],
@@ -15,19 +15,23 @@ function romanNumeralConverter(num) {
     ['I', 1]
   ];
 
-  let ans = "";
+  let result = '';
 
-  while (num !== 0) {
-    for (let i in romanMap) {
-      let [symbol, value] = romanMap[i];
-      if (value <= num) {
-        ans += symbol;
-        num -= value;
-        break;
-      }
+  for (let i = 0; i < romanSymbols.length; i++) {
+    const [symbol, value] = romanSymbols[i];
+
+    while (num >= value) {
+      result += symbol;
+      num -= value;
     }
   }
 
-  return ans;
+  return result;
 }
-console.log(romanNumeralConverter(798));
+
+// Test cases
+console.log(convertToRoman(14));   // Output: XIV
+console.log(convertToRoman(798));  // Output: DCCXCVIII
+
+// do not edit below this line
+module.exports = convertToRoman;
