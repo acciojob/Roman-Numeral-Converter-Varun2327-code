@@ -1,33 +1,33 @@
-function convertToRoman(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
+function romanNumeralConverter(num) {
+  const romanMap = [
+    ['M', 1000],
+    ['CM', 900],
+    ['D', 500],
+    ['CD', 400],
+    ['C', 100],
+    ['XC', 90],
+    ['L', 50],
+    ['XL', 40],
+    ['X', 10],
+    ['IX', 9],
+    ['V', 5],
+    ['IV', 4],
+    ['I', 1]
+  ];
 
+  let ans = "";
 
-let n=798;
-let ans="";
-while(n!=0){
-   
-   for(let i in romanMap){
+  while (num !== 0) {
+    for (let i in romanMap) {
+      let [symbol, value] = romanMap[i];
+      if (value <= num) {
+        ans += symbol;
+        num -= value;
+        break;
+      }
+    }
+  }
 
-       let value=romanMap[i][0];
-       let num=romanMap[i][1];
-
-
-        if(num<=n){
-
-           ans=ans+value;
-            n=n-num;
-             break;
-            
+  return ans;
 }
-        
-}
-
-}
+console.log(romanNumeralConverter(798));
